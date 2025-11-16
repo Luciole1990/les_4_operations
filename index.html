@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les 4 Opérations en Contexte Professionnel - CAP AEPE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .addition { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .soustraction { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .multiplication { background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); }
+        .division { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333 !important; }
+
+        .question-card {
+            background: #f8f9fa;
+            border-left: 5px solid;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .question-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .addition-card { border-color: #43e97b; }
+        .soustraction-card { border-color: #fa709a; }
+        .multiplication-card { border-color: #30cfd0; }
+        .division-card { border-color: #a8edea; }
+
+        .question-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 1.1em;
+        }
+
+        .question-text {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .answer-section {
+            margin-top: 15px;
+        }
+
+        .answer-label {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1em;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .answer-box {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: border-color 0.3s;
+        }
+
+        .answer-box:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .icon {
+            font-size: 1.3em;
+            margin-right: 8px;
+        }
+
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-style: italic;
+        }
+
+        .btn-termine {
+            margin-top: 20px;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            margin-left: 10px;
+        }
+
+        .btn-termine:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-termine:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-pdf {
+            margin-top: 20px;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(240, 147, 251, 0.4);
+        }
+
+        .btn-pdf:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(240, 147, 251, 0.6);
+        }
+
+        .btn-pdf:active {
+            transform: translateY(-1px);
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+            }
+            .question-card {
+                page-break-inside: avoid;
+            }
+            .btn-termine, .btn-pdf {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧮 Les 4 Opérations en Contexte Professionnel</h1>
+            <p>CAP Accompagnant Éducatif Petite Enfance</p>
+        </header>
+
+        <div class="content">
+            <!-- ADDITION -->
+            <div class="section">
+                <div class="section-title addition">
+                    <span class="icon">➕</span>Addition
+                </div>
+
+                <div class="question-card addition-card">
+                    <div class="question-text">
+                        <span class="question-number">1</span>
+                        Tu prépares 12 serviettes pour les petits, 18 pour les moyens et 14 pour les grands. Combien de serviettes en tout ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+
+                <div class="question-card addition-card">
+                    <div class="question-text">
+                        <span class="question-number">2</span>
+                        Sur une journée, tu fais 4 changes le matin et 7 l'après-midi. Combien de changes au total ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+
+                <div class="question-card addition-card">
+                    <div class="question-text">
+                        <span class="question-number">3</span>
+                        Lundi à vendredi : 13, 15, 14, 12 et 16 enfants présents. Combien d'enfants accueillis au total sur la semaine ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+
+                <div class="question-card addition-card">
+                    <div class="question-text">
+                        <span class="question-number">4</span>
+                        Pour le goûter, tu sors 9 yaourts, 12 compotes et 8 fromages blancs. Combien de produits laitiers au total ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+
+                <div class="question-card addition-card">
+                    <div class="question-text">
+                        <span class="question-number">5</span>
+                        Le matin, 8 enfants arrivent entre 7h et 8h, puis 11 entre 8h et 9h, et encore 6 entre 9h et 10h. Combien d'enfants sont arrivés en tout ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+
+                <div class="question-card addition-card">
+                    <div class="question-text">
+                        <span class="question-number">6</span>
+                        Dans le placard, tu comptes 17 bavoirs propres, 23 bodies et 19 pyjamas. Combien de vêtements en tout ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+            </div>
+
+            <!-- SOUSTRACTION -->
+            <div class="section">
+                <div class="section-title soustraction">
+                    <span class="icon">➖</span>Soustraction
+                </div>
+
+                <div class="question-card soustraction-card">
+                    <div class="question-text">
+                        <span class="question-number">7</span>
+                        Tu avais 36 couches dans le placard. Tu en as utilisé 19 aujourd'hui. Combien en reste-t-il ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+
+                <div class="question-card soustraction-card">
+                    <div class="question-text">
+                        <span class="question-number">8</span>
+                        Une boîte de compote contient 24 pots. Tu en as distribué 17 au goûter. Combien en reste-t-il ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+
+                <div class="question-card soustraction-card">
+                    <div class="question-text">
+                        <span class="question-number">9</span>
+                        15 enfants étaient inscrits aujourd'hui, mais 3 sont absents. Combien d'enfants sont présents ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+
+                <div class="question-card soustraction-card">
+                    <div class="question-text">
+                        <span class="question-number">10</span>
+                        Tu as préparé 45 gobelets pour la journée. Les enfants en ont utilisé 28. Combien de gobelets reste-t-il à ranger ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+
+                <div class="question-card soustraction-card">
+                    <div class="question-text">
+                        <span class="question-number">11</span>
+                        Il y avait 52 jeux dans la salle d'activités. 14 sont au nettoyage. Combien de jeux sont disponibles pour les enfants ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+
+                <div class="question-card soustraction-card">
+                    <div class="question-text">
+                        <span class="question-number">12</span>
+                        Tu avais commandé 68 dosettes de lait infantile. Il t'en reste 23 après cette semaine. Combien en as-tu utilisées ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+            </div>
+
+            <!-- MULTIPLICATION -->
+            <div class="section">
+                <div class="section-title multiplication">
+                    <span class="icon">✖️</span>Multiplication
+                </div>
+
+                <div class="question-card multiplication-card">
+                    <div class="question-text">
+                        <span class="question-number">13</span>
+                        Tu as 5 boîtes de lingettes de 72 unités chacune. Combien de lingettes as-tu au total ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+
+                <div class="question-card multiplication-card">
+                    <div class="question-text">
+                        <span class="question-number">14</span>
+                        Tu as 8 biberons de 210 ml et 5 biberons de 150 ml. Quelle quantité totale de lait as-tu préparée ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+
+                <div class="question-card multiplication-card">
+                    <div class="question-text">
+                        <span class="question-number">15</span>
+                        Chaque enfant boit 3 verres d'eau par jour. Il y a 12 enfants présents. Combien de verres d'eau au total ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+
+                <div class="question-card multiplication-card">
+                    <div class="question-text">
+                        <span class="question-number">16</span>
+                        Tu prépares 4 tables avec 6 chaises chacune pour l'activité. Combien de chaises au total ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+
+                <div class="question-card multiplication-card">
+                    <div class="question-text">
+                        <span class="question-number">17</span>
+                        Chaque enfant mange 2 biscuits au goûter. Il y a 18 enfants. Combien de biscuits faut-il prévoir ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+
+                <div class="question-card multiplication-card">
+                    <div class="question-text">
+                        <span class="question-number">18</span>
+                        Une boîte de pots de purée contient 12 pots. Tu achètes 6 boîtes. Combien de pots de purée as-tu ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIVISION -->
+            <div class="section">
+                <div class="section-title division">
+                    <span class="icon">➗</span>Division
+                </div>
+
+                <div class="question-card division-card">
+                    <div class="question-text">
+                        <span class="question-number">19</span>
+                        Tu dois partager 24 jouets entre 4 groupes d'enfants. Combien de jouets par groupe ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+
+                <div class="question-card division-card">
+                    <div class="question-text">
+                        <span class="question-number">20</span>
+                        Tu as 35 feuilles de dessin à répartir équitablement entre 5 enfants. Combien de feuilles chacun ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+
+                <div class="question-card division-card">
+                    <div class="question-text">
+                        <span class="question-number">21</span>
+                        48 gommettes doivent être partagées équitablement entre 6 enfants. Combien de gommettes par enfant ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+
+                <div class="question-card division-card">
+                    <div class="question-text">
+                        <span class="question-number">22</span>
+                        Tu dois ranger 56 albums jeunesse sur 8 étagères. Combien de livres par étagère ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+
+                <div class="question-card division-card">
+                    <div class="question-text">
+                        <span class="question-number">23</span>
+                        Tu as 42 perles à partager équitablement entre 7 enfants pour une activité manuelle. Combien de perles chacun ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+
+                <div class="question-card division-card">
+                    <div class="question-text">
+                        <span class="question-number">24</span>
+                        Tu dois répartir 63 dosettes de lait en poudre dans 9 boîtes individuelles. Combien de dosettes par boîte ?
+                    </div>
+                    <div class="answer-section">
+                        <label class="answer-label">Mon raisonnement :</label>
+                        <textarea placeholder="Explique ta démarche ici..."></textarea>
+                        <input type="text" class="answer-box" placeholder="Réponse finale">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>💡 N'oublie pas : explique toujours ton raisonnement avant de donner ta réponse finale !</p>
+            <p>Bon courage ! 🌟</p>
+            <button onclick="window.print()" class="btn-pdf">📄 Télécharger en PDF</button>
+            <button onclick="window.location.href='https://luciole1990.github.io/les_4_operations_correction'" class="btn-termine">Terminé ✓</button>
+        </footer>
+    </div>
+</body>
+</html>
